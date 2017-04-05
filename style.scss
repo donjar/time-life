@@ -27,6 +27,7 @@ body {
   border-radius: 0.2em;
   cursor: pointer;
   padding: 0.25em;
+  text-align: center;
 
   &:hover {
     background-color: #e6e6e6;
@@ -52,5 +53,10 @@ section {
   height: 100%;
   flex-flow: column wrap;
   justify-content: center;
+  width: 100%;
+}
+
+input {
+  margin: 1em 0;
   width: 100%;
 }
