@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$('section[data-page="1"]').show();
 
 	$('.start-button').click(function(e) {
-		$(e.target).parent('section').fadeOut(startFadeOut, function() {
+		$(e.target).parents('section').fadeOut(startFadeOut, function() {
 			startGame();
 		});
 	});
