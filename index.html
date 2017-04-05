@@ -5,14 +5,38 @@
 
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" href="/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+
+    <link rel="stylesheet" href="/normalize.css">
     <link rel="stylesheet" href="/style.css">
 
-    <script src="/script.js" type="text/javascript"></script>
+    <script src="/javascript/constants.js" type="text/javascript"></script>
+    <script src="/javascript/main.js" type="text/javascript"></script>
+    <script src="/javascript/game.js" type="text/javascript"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    Asdf
+    <section data-page="1">
+      <div class="main button start-button">Start</div>
+    </section>
+
+    <section data-page="2">
+      <p class="main">Imagine a life where everyone has a much greater sense on how time goes.</p>
+    </section>
+
+    <section data-page="3">
+      <p class="main">I know exactly how fast time runs... I know exactly when is 10am. I know exactly when is one minute from now.</p>
+    </section>
+
+    <section data-page="4">
+      <p class="main">This is not something humans usually possess.</p>
+    </section>
+
+    <section class="stop" data-page="5">
+      <p class="main">Don't believe me? I ask you, how many seconds have passed since you pressed the "start" button?</p>
+      <input></input>
+      <div class="button">Submit</div>
+    </section>
   </body>
 </html>
