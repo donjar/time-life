@@ -41,6 +41,8 @@ function actualStep() {
 	const previousSection = currentSection;
 	currentSection = currentSection.next();
 
+	currentSection.parent().attr('class', 'bg-' + currentSection.attr('class'));
+
 	if (currentSection.hasClass('stop')) {
 		clearInterval(introInterval);
 	}
