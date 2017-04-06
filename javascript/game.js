@@ -20,12 +20,12 @@ function startGame(start) {
 }
 
 function checkTimePassed(timeGuess, pageNumber) {
-	const actual = (startFadeOut + (pageNumber - 1) * slideTime + pageFadeTime) / 1000;
+	const actual = (startFadeOut + (pageNumber - 1) * introSlideTime + pageFadeTime) / 1000;
 	return Math.abs(parseInt(timeGuess) - actual) <= 0.5;
 }
 
 function play() {
-	introInterval = setInterval(step, slideTime);
+	introInterval = setInterval(step, introSlideTime);
 }
 
 function step() {
@@ -41,14 +41,24 @@ function actualStep() {
 	const previousSection = currentSection;
 	currentSection = currentSection.next();
 
-	currentSection.parent().attr('class', 'bg-' + currentSection.attr('class'));
+	if (currentSection.hasClass('white')) {
+		currentSection.parent().css('transition', 'background 3s ease');
+	} else {
+		currentSection.parent().css('transition', 'background 0.5s ease');
+	}
+	currentSection.parent().attr('class', 'container bg-' + currentSection.attr('class'));
 
 	if (currentSection.hasClass('stop')) {
 		clearInterval(introInterval);
 	}
 
 	if (currentSection.hasClass('intro')) {
-		currentSection.fadeIn(pageFadeTime);
+		if (currentSection.hasClass('end')) {
+			currentSection.fadeIn(introSlideTime);
+		} else {
+			currentSection.fadeIn(pageFadeTime);
+		}
+
 		if (!previousSection.hasClass('intro')) {
 			play();
 		}
@@ -60,7 +70,7 @@ function actualStep() {
 	}
 }
 
-function typeElement(elem, delay = 2) {
+function typeElement(elem, delay = defaultDelay) {
 	let text = elem.text();
 	elem.text('');
 
