@@ -1,4 +1,5 @@
 var currentPage = 1;
+var interval;
 
 function startGame() {
 	$(`section[data-page="${currentPage}"]`).fadeIn(pageFadeTime);
@@ -13,6 +14,7 @@ function startGame() {
 		} else {
 			$(`section[data-page="${currentPage + 1}"] .right`).hide();
 		}
+		step();
 		play();
 	});
 }
@@ -23,15 +25,16 @@ function checkTimePassed(timeGuess, numberOfPages) {
 }
 
 function play() {
-	const interval = setInterval(function() {
-		$(`section[data-page="${currentPage}"]`).fadeOut(pageFadeTime, function() {
-			currentPage++;
-			$(`section[data-page="${currentPage}"]`).fadeIn(pageFadeTime);
+	interval = setInterval(step, slideTime);
+}
 
-			if ($(`section[data-page="${currentPage}"]`).hasClass('stop')) {
-				clearInterval(interval);
-			}
-		});
+function step() {
+	$(`section[data-page="${currentPage}"]`).fadeOut(pageFadeTime, function() {
+		currentPage++;
+		$(`section[data-page="${currentPage}"]`).fadeIn(pageFadeTime);
 
-	}, slideTime);
+		if ($(`section[data-page="${currentPage}"]`).hasClass('stop')) {
+			clearInterval(interval);
+		}
+	});
 }
