@@ -1,40 +1,77 @@
-var currentPage = 1;
-var interval;
+var currentSection;
+var introInterval;
 
-function startGame() {
-	$(`section[data-page="${currentPage}"]`).fadeIn(pageFadeTime);
+function startGame(start) {
+	start.fadeIn(pageFadeTime);
+	currentSection = start;
 	play();
 
 	$('.button[data-event="time-passed"]').click(function() {
-		const numberOfPages = currentPage;
 		const guess = $('input[data-event="time-passed"]').val();
 
-		if (checkTimePassed(guess, numberOfPages)) {
-			$(`section[data-page="${currentPage + 1}"] .wrong`).hide();
+		if (checkTimePassed(guess, 3)) {
+			currentSection.next().find('.wrong').hide();
 		} else {
-			$(`section[data-page="${currentPage + 1}"] .right`).hide();
+			currentSection.next().find('.right').hide();
 		}
 		step();
 		play();
 	});
 }
 
-function checkTimePassed(timeGuess, numberOfPages) {
-	const actual = (startFadeOut + (numberOfPages - 1) * slideTime + pageFadeTime) / 1000;
+function checkTimePassed(timeGuess, pageNumber) {
+	const actual = (startFadeOut + (pageNumber - 1) * slideTime + pageFadeTime) / 1000;
 	return Math.abs(parseInt(timeGuess) - actual) <= 0.5;
 }
 
 function play() {
-	interval = setInterval(step, slideTime);
+	introInterval = setInterval(step, slideTime);
 }
 
 function step() {
-	$(`section[data-page="${currentPage}"]`).fadeOut(pageFadeTime, function() {
-		currentPage++;
-		$(`section[data-page="${currentPage}"]`).fadeIn(pageFadeTime);
+	if (currentSection.hasClass('intro')) {
+		currentSection.fadeOut(pageFadeTime, actualStep)
+	} else {
+		currentSection.hide();
+		actualStep();
+	}
+}
 
-		if ($(`section[data-page="${currentPage}"]`).hasClass('stop')) {
-			clearInterval(interval);
+function actualStep() {
+	const previousSection = currentSection;
+	currentSection = currentSection.next();
+
+	if (currentSection.hasClass('stop')) {
+		clearInterval(introInterval);
+	}
+
+	if (currentSection.hasClass('intro')) {
+		currentSection.fadeIn(pageFadeTime);
+		if (!previousSection.hasClass('intro')) {
+			play();
 		}
-	});
+
+	} else {
+		currentSection.show();
+		clearInterval(introInterval);
+		typeElement(currentSection.find('.text'));
+	}
+}
+
+function typeElement(elem, delay = 2) {
+	let text = elem.text();
+	elem.text('');
+
+	if (elem.data('delay') !== undefined) {
+		delay = elem.data('delay');
+	}
+
+	const typeTimer = setInterval(function() {
+		if (elem.text().length >= text.length) {
+			clearInterval(typeTimer);
+			setTimeout(step, pageFadeTime);
+		} else {
+			elem.text(elem.text() + text.charAt(elem.text().length));
+		}
+	}, delay);
 }

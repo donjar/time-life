@@ -1,10 +1,11 @@
 $(document).ready(function() {
 	$('section').hide();
-	$('section[data-page="0"]').show();
+	$('section').first().show();
 
 	$('.start-button').click(function(e) {
-		$(e.target).parents('section').fadeOut(startFadeOut, function() {
-			startGame();
+		const section = $(e.target).parents('section')
+		section.fadeOut(startFadeOut, function() {
+			startGame(section.next());
 		});
 	});
 })

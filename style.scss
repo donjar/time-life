@@ -8,6 +8,15 @@ html {
   box-sizing: inherit;
 }
 
+p {
+  margin: 0;
+}
+
+section {
+  height: 100%;
+  position: relative;
+}
+
 html,
 body {
   height: 100%;
@@ -15,10 +24,15 @@ body {
 }
 
 body {
-  background-color: #334;
+  background-color: #000;
   font-family: 'Arvo', sans-serif;
   margin: 0;
-  padding: 10%;
+  padding: 0 10%;
+}
+
+.container {
+  background-color: #334;
+  height: 100%;
 }
 
 .button {
@@ -47,11 +61,12 @@ p.main {
   color: #fff;
 }
 
-section {
+.intro {
   align-items: center;
   display: flex;
   height: 100%;
   flex-flow: column wrap;
+  padding: 10%;
   justify-content: center;
   width: 100%;
 }
@@ -59,4 +74,26 @@ section {
 input {
   margin: 1em 0;
   width: 100%;
+}
+
+.box {
+  bottom: 0;
+  color: #fff;
+  height: 20%;
+  position: absolute;
+  width: 100%;
+
+  .speaker {
+    background-color: rgba(80, 80, 210, 0.3);
+    border-top-right-radius: 1em;
+    height: 25%;
+    padding: 0.4em 1em;
+    width: 12em;
+  }
+
+  .text {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 75%;
+    padding: 1em;
+  }
 }
