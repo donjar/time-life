@@ -1,0 +1,48 @@
+html { box-sizing: border-box; }
+
+*, *::before, *::after { box-sizing: inherit; }
+
+p { margin: 0; }
+p.main { color: #fff; }
+
+section { height: 100%; position: relative; }
+
+html, body { font-size: 20px; height: 100%; width: 100%; }
+
+body { background-color: #000; font-family: 'Arvo', sans-serif; margin: 0; padding: 0 10%; }
+
+.container { background-attachment: fixed; background-color: #334; background-position: center center; background-repeat: no-repeat; background-size: cover; height: 100%; transition: background 0.5s ease; }
+
+.button { background-color: #fff; border: 1px solid #adadad; border-radius: 0.2em; cursor: pointer; padding: 0.25em; text-align: center; }
+.button:hover { background-color: #e6e6e6; }
+.button:active { background-color: #d4d4d4; }
+
+.main { font-size: 60px; text-align: center; }
+
+.intro { align-items: center; display: flex; flex-flow: column wrap; height: 100%; justify-content: center; padding: 10%; width: 100%; }
+
+input { margin: 1em 0; width: 100%; }
+
+.box { bottom: 0; color: #fff; height: 20%; position: absolute; width: 100%; }
+.box .speaker { background-color: rgba(80, 80, 210, 0.7); border-top-right-radius: 1em; height: 25%; padding: 0.4em 1em; width: 12em; }
+.box .text { background-color: rgba(0, 0, 0, 0.7); height: 75%; padding: 1em; }
+
+.bg-bed { background-image: url("/images/bed.jpeg"); }
+
+.bg-war { background-image: url("/images/war.jpg"); }
+
+.bg-phone { background-image: url("/images/phone.jpg"); }
+
+.bg-shower { background-image: url("/images/shower.jpg"); }
+
+.bg-car { background-image: url("/images/car.jpg"); }
+
+.bg-dressing { background-image: url("/images/dressing.jpg"); }
+
+.bg-traffic { background-image: url("/images/traffic.jpg"); }
+
+.bg-angry-traffic { background-image: url("/images/angrytraffic.jpg"); }
+
+.bg-white { background-image: url("/images/white.jpg"); }
+
+.bg-hospital { background-image: url("/images/hospital.jpg"); }
